@@ -13,11 +13,6 @@ class AnimalListAPIView(generics.ListCreateAPIView):
     serializer_class = AnimalSerializer
     pagination_class = CustomPagination
 
-    def list(self, request):
-        queryset = self.get_queryset()
-        serializer = AnimalSerializer(queryset, many=True)
-        return Response(serializer.data)
-
 
 class AnimalRemove(generics.DestroyAPIView):
     queryset = Animal.objects.using('memory').all()

@@ -12,7 +12,5 @@ class AnimalSerializer(serializers.ModelSerializer):
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
-        import pdb
-        pdb.set_trace()
         instance.delete(using="memory")
         return Response(status=status.HTTP_204_NO_CONTENT)

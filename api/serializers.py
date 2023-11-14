@@ -7,6 +7,7 @@ class AnimalSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
     def create(self, validated_data):
+        validated_data['name'] = validated_data['name'].lower()
         instance = Animal.objects.using("memory").create(**validated_data)
         return instance
 

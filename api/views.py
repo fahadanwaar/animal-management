@@ -14,6 +14,6 @@ class AnimalListAPIView(generics.ListCreateAPIView):
     pagination_class = CustomPagination
 
 
-class AnimalRemove(generics.DestroyAPIView):
+class AnimalRemoveAPIView(generics.DestroyAPIView):
     queryset = Animal.objects.using('memory').all()
     serializer_class = AnimalSerializer

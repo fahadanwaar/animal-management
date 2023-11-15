@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 class AnimalListAPIView(generics.ListCreateAPIView):
-    queryset = Animal.objects.using('memory').all()
+    queryset = Animal.objects.using('memory').all().order_by('-id')
     serializer_class = AnimalSerializer
     pagination_class = CustomPagination
 

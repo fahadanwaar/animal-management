@@ -8,6 +8,7 @@ from .serializers import AnimalSerializer
 
 
 class AnimalApiTests(TestCase):
+    databases = {'default', 'memory'}
     def setUp(self):
         self.client = APIClient()
 
@@ -19,16 +20,16 @@ class AnimalApiTests(TestCase):
 
     def test_create_animal(self):
         url = reverse('animal-list')
-        data = {'name': 'Goat'}
+        data = {'name': 'goat'}
 
         response = self.client.post(url, data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Animal.objects.using('memory').count(), 1)
-        self.assertEqual(Animal.objects.using('memory').get().name, 'Goat')
+        self.assertEqual(Animal.objects.using('memory').get().name, 'goat')
 
     def test_delete_animal(self):
-        animal = Animal.objects.using('memory').create(name='Markhor')
+        animal = Animal.objects.using('memory').create(name='markhor')
         url = reverse('animal-remove', args=[animal.id])
 
         response = self.client.delete(url)
